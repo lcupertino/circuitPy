@@ -1,15 +1,24 @@
 class Capacitor:
 
-    def __init__(name, fillable, nodename, aliases):
+    def __init__(self, name, fillable, nodename, aliases):
         self.name = name
         self.fillable = fillable
         self.nodedanem = nodename
         self.aliases = aliases
+    
+    def obtain_parameters(self):
+        list_of_parameters = self.__dir__()
 
-    def write_point(coordinate):
+        for i, elem in enumerate(list_of_parameters):
+            if("_" in elem.split()):
+                list_of_parameters.pop(i)
+
+        return list_of_parameters
+
+    def write_point(self, coordinate):
         return "("+str(coordinate["x"]) + "," + str(coordinate["y"])  +")"
    
-    def write_parameters():
+    def write_parameters(self):
         parameters = "["
         list_of_parameters = this.__
         
@@ -20,5 +29,14 @@ class Capacitor:
 
         return parameters
     
-    def draw(first_coord, second_coord):
-        write_point(first_coordinate) + " to " + write_parameters() + write_point(second_coord)
+    def draw(self, first_coord, second_coord):
+        return self.write_point(first_coord) + " to " + self.write_point(second_coord)
+
+
+test_capacitor = Capacitor("capacitor", True, True, "C")
+first_coord = {"x": 1, "y": 2}
+second_coord = {"x": 1, "y": 3}
+
+print(test_capacitor.write_point(first_coord))
+print(test_capacitor.draw(first_coord, second_coord))
+print(test_capacitor.obtain_parameters())
